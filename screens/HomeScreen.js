@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import React from 'react';
-
 const HomeScreen = () => {
   return (
-    <View>
-      <Text className="bg-red-500">HomeScreen</Text>
-    </View>
+    <SafeAreaView>
+      <Text className=" flex-1 items-center justify-center  p-10 font-bold uppercase text-red-800">
+        HomeScreen
+      </Text>
+    </SafeAreaView>
   );
 };
 
