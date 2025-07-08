@@ -1,11 +1,11 @@
 import HomeScreen from 'screens/HomeScreen';
 import './global.css';
-import { Text, View } from 'react-native';
 
-export default function App() {
+const App = () => {
   return (
     <>
       <HomeScreen />
     </>
   );
-}
+};
+export default App;

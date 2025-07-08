@@ -6,7 +6,7 @@ import HomeScreen from 'screens/HomeScreen';
 
 const Stack = createNativeStackNavigator;
 
-export default function AppNavigation() {
+const appNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -14,4 +14,5 @@ export default function AppNavigation() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+export default appNavigation;
