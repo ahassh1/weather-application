@@ -1,18 +1,11 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StatusBar,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { View, SafeAreaView, StatusBar, Image, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { theme } from 'theme';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 
 const HomeScreen = () => {
   const [showSearch, toggleSearch] = useState(false);
+
   return (
     <View className="relative flex-1">
       <StatusBar style="light" />
@@ -31,16 +24,17 @@ const HomeScreen = () => {
               <TextInput
                 placeholder="Search City"
                 placeholderTextColor={'lightgray'}
-                className="relative h-10 flex-1 border border-gray-50 pl-6 text-base text-white"
+                className=" h-10 flex-1 
+                pl-6 text-base text-white"
               />
             ) : null}
 
             <TouchableOpacity
               onPress={() => toggleSearch(!showSearch)}
               style={{ backgroundColor: theme.bgWhite(0.3) }}
-              className="m-1 rounded-full p-3"
-            />
-            <MagnifyingGlassIcon size={25} color="white" className="absolute" />
+              className="m-1 rounded-full p-3">
+              <MagnifyingGlassIcon size={25} color="white" />
+            </TouchableOpacity>
           </View>
         </View>
       </SafeAreaView>
