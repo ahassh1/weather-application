@@ -24,7 +24,7 @@ const HomeScreen = () => {
     <View className="relative flex-1">
       <StatusBar barStyle="light-content" />
       <Image
-        blurRadius={5}
+        blurRadius={7}
         source={require('../assets/images/bgdone.png')}
         className="absolute h-full w-full"
       />
@@ -69,6 +69,15 @@ const HomeScreen = () => {
               })}
             </View>
           )}
+        </View>
+
+        {/* forecast section  */}
+        <View className="mx-4 mb-1 flex flex-1 justify-around">
+          {/* location */}
+          <Text className="text-center text-2xl font-bold text-white">
+            London,
+            <Text className="text-lg font-semibold text-gray-200">United Kingdom</Text>
+          </Text>
         </View>
       </SafeAreaView>
     </View>
