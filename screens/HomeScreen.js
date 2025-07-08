@@ -26,7 +26,13 @@ const HomeScreen = () => {
       <Image
         blurRadius={7}
         source={require('../assets/images/bgdone.png')}
-        className="absolute h-full w-full"
+        //full screen image
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          resizeMode: 'cover',
+        }}
       />
       <SafeAreaView className="flex flex-1">
         {/* Search section */}
@@ -78,6 +84,18 @@ const HomeScreen = () => {
             London,
             <Text className="text-lg font-semibold text-gray-200">United Kingdom</Text>
           </Text>
+        </View>
+        {/* weather image  */}
+        <View className="flex-row justify-center">
+          <Image
+            source={require('../assets/images/partlycloudy.png')}
+            style={{
+              width: 120,
+              height: 120,
+              marginTop: 20,
+            }}
+            resizeMode="contain"
+          />
         </View>
       </SafeAreaView>
     </View>
