@@ -87,6 +87,7 @@ const HomeScreen = () => {
       {loading ? (
         <View className="flex-1 flex-row items-center justify-center">
           <Text className="text-4xl text-white"> Loading....</Text>
+          <Progress.CircleSnail thickness={120} size={40} color="#0bb3b2" />
         </View>
       ) : (
         <SafeAreaView className="flex flex-1">
