@@ -15,6 +15,7 @@ import { CalendarDaysIcon, MapPinIcon } from 'react-native-heroicons/solid';
 
 import { debounce } from 'lodash';
 import { fetchLocations, fetchWeatherForecast } from 'api/weather';
+import { weatherImages } from 'constants';
 
 const HomeScreen = () => {
   const [showSearch, toggleSearch] = useState(false);
@@ -117,10 +118,12 @@ const HomeScreen = () => {
             {location?.name},
             <Text className="text-lg font-semibold text-gray-200">{' ' + location?.country}</Text>
           </Text>
+
           {/* weather image  */}
           <View className="flex-row justify-center">
             <Image
-              source={require('../assets/images/partlycloudy.png')}
+              // source={{ uri: 'https:' + current?.condition?.icon }}
+              source={weatherImages[current?.condition?.text]}
               style={{
                 width: 110,
                 height: 120,
@@ -142,23 +145,21 @@ const HomeScreen = () => {
           <View className="mx-4 flex-row justify-between">
             <View className="flex-row items-center space-x-2">
               <Image
-                // source={require('../assets/images/drop.png')}
-                // source={{ uri: 'https:' + current?.condition?.icon }}
-
+                source={require('../assets/images/drop.png')}
                 style={{
-                  width: 59,
-                  height: 52,
+                  width: 23,
+                  height: 24,
                 }}
                 resizeMode="contain"
               />
-              <Text className="text-base font-semibold text-white">23%</Text>
+              <Text className="text-base font-semibold text-white">{current?.humidity}%</Text>
             </View>
             <View className="flex-row items-center space-x-2">
               <Image
                 source={require('../assets/images/sun.png')}
                 style={{
-                  width: 20,
-                  height: 22,
+                  width: 22,
+                  height: 24,
                 }}
               />
               <Text className="text-base font-semibold text-white">6:05 AM</Text>
@@ -167,11 +168,11 @@ const HomeScreen = () => {
               <Image
                 source={require('../assets/images/winds.png')}
                 style={{
-                  width: 20,
-                  height: 22,
+                  width: 23,
+                  height: 24,
                 }}
               />
-              <Text className="text-base font-semibold text-white">22 km</Text>
+              <Text className="text-base font-semibold text-white">{current?.wind_kph}km</Text>
             </View>
           </View>
         </View>
@@ -187,76 +188,27 @@ const HomeScreen = () => {
             horizontal
             contentContainerStyle={{ paddingHorizontal: 15 }}
             showsHorizontalScrollIndicator={false}>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">13&#176;</Text>
-            </View>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Tuseday</Text>
-              <Text className="text-xl font-semibold text-white">13&#176;</Text>
-            </View>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">13&#176;</Text>
-            </View>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">13&#176;</Text>
-            </View>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">13&#176;</Text>
-            </View>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">13&#176;</Text>
-            </View>
-            <View
-              className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
-              style={{ backgroundColor: theme.bgWhite(0.15) }}>
-              <Image
-                source={require('../assets/images/heavyrains.png')}
-                style={{ height: 32, width: 30 }}
-              />
-              <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">23&#176;</Text>
-            </View>
+            {weather?.forecast?.forecastday?.map((item, index) => {
+              let date = new Date(item.date);
+              let options = { weekday: 'long' };
+              let dayName = date.toLocaleDateString('en-US', options);
+              dayName = dayName.split(',')[0];
+              return (
+                <View
+                  key={index}
+                  className="mr-4 flex w-24 items-center justify-center space-y-1 rounded-3xl py-3"
+                  style={{ backgroundColor: theme.bgWhite(0.15) }}>
+                  <Image
+                    source={weatherImages[item?.day?.condition?.text]} // ideally use item.day.condition.text for dynamic icon
+                    style={{ height: 32, width: 30 }}
+                  />
+                  <Text className="text-white">{dayName}</Text>
+                  <Text className="text-xl font-semibold text-white">
+                    {item?.day?.avgtemp_c}&#176;
+                  </Text>
+                </View>
+              );
+            })}
           </ScrollView>
         </View>
       </SafeAreaView>
