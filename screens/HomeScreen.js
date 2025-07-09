@@ -21,6 +21,10 @@ const HomeScreen = () => {
     console.log('location:', loc);
   };
 
+  const handleSearch = (value) => {
+    console.log('value: ', value);
+  };
+
   return (
     <View className="relative flex-1">
       <StatusBar barStyle="light-content" />
@@ -45,6 +49,7 @@ const HomeScreen = () => {
             }}>
             {showSearch && (
               <TextInput
+                onChangeText={handleSearch}
                 placeholder="Search City"
                 placeholderTextColor="lightgray"
                 className="h-10 flex-1 pl-6 text-base text-white"
