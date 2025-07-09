@@ -20,13 +20,17 @@ const HomeScreen = () => {
   const [showSearch, toggleSearch] = useState(false);
   const [locations, setLocations] = useState([]);
 
+  const [weather, setWeather] = useState({});
+
   const handlelocation = (loc) => {
     console.log('location:', loc);
     setLocations([]);
+    toggleSearch(false);
     fetchWeatherForecast({
       cityName: loc.name,
       days: '7',
     }).then((data) => {
+      setWeather(data);
       console.log('got forecast: ', data);
     });
   };
@@ -42,7 +46,9 @@ const HomeScreen = () => {
     }
   };
 
-  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1000), []);
+
+  const { current, location } = weather;
 
   return (
     <View className="relative flex-1">
@@ -108,8 +114,8 @@ const HomeScreen = () => {
         <View className="mx-4 mb-1 flex flex-1 justify-around">
           {/* location */}
           <Text className="text-center text-2xl font-bold text-white">
-            London,
-            <Text className="text-lg font-semibold text-gray-200">United Kingdom</Text>
+            {location?.name},
+            <Text className="text-lg font-semibold text-gray-200">{' ' + location?.country}</Text>
           </Text>
           {/* weather image  */}
           <View className="flex-row justify-center">
@@ -125,18 +131,25 @@ const HomeScreen = () => {
           </View>
           {/* degree celclus  */}
           <View className="space-y-2">
-            <Text className="ml-5 text-center text-6xl font-bold text-white">23&#176;</Text>
-            <Text className="text-center text-xl tracking-widest text-white">Partly cloudy</Text>
+            <Text className="ml-5 text-center text-6xl font-bold text-white">
+              {current?.temp_c}&#176;
+            </Text>
+            <Text className="text-center text-xl tracking-widest text-white">
+              {current?.condition?.text}
+            </Text>
           </View>
           {/* other stats  */}
           <View className="mx-4 flex-row justify-between">
             <View className="flex-row items-center space-x-2">
               <Image
-                source={require('../assets/images/drop.png')}
+                // source={require('../assets/images/drop.png')}
+                // source={{ uri: 'https:' + current?.condition?.icon }}
+
                 style={{
-                  width: 20,
-                  height: 22,
+                  width: 59,
+                  height: 52,
                 }}
+                resizeMode="contain"
               />
               <Text className="text-base font-semibold text-white">23%</Text>
             </View>
