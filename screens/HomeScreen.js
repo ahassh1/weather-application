@@ -17,6 +17,7 @@ import { debounce } from 'lodash';
 import { fetchLocations, fetchWeatherForecast } from 'api/weather';
 import { weatherImages } from 'constants';
 import * as Progress from 'react-native-progress';
+import { getData, storeData } from 'utils/asyncStorage';
 
 const HomeScreen = () => {
   const [showSearch, toggleSearch] = useState(false);
@@ -38,6 +39,7 @@ const HomeScreen = () => {
       setWeather(data);
 
       setLoading(false);
+      storeData('city', loc.name);
       // console.log('got forecast: ', data);
     });
   };
@@ -56,9 +58,13 @@ const HomeScreen = () => {
   useEffect(() => {
     fetchMyWeatherData();
   }, []);
+
   const fetchMyWeatherData = async () => {
+    let myCity = await getData('city');
+    let cityName = 'Dhaka';
+    if (myCity) cityName = myCity;
     fetchWeatherForecast({
-      cityName: 'Dhaka',
+      cityName,
       days: '7',
     }).then((data) => {
       setWeather(data);
