@@ -193,7 +193,9 @@ const HomeScreen = () => {
                     height: 24,
                   }}
                 />
-                <Text className="text-base font-semibold text-white">6:05 AM</Text>
+                <Text className="text-base font-semibold text-white">
+                  {weather?.forecast?.forecastday[0]?.astro?.sunrise}
+                </Text>
               </View>
               <View className="flex-row items-center space-x-2">
                 <Image
