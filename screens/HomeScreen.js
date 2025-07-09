@@ -8,10 +8,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { theme } from 'theme';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import { CalendarDaysIcon, MapPinIcon } from 'react-native-heroicons/solid';
+
+import { debounce } from 'lodash';
 
 const HomeScreen = () => {
   const [showSearch, toggleSearch] = useState(false);
@@ -24,6 +26,8 @@ const HomeScreen = () => {
   const handleSearch = (value) => {
     console.log('value: ', value);
   };
+
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
 
   return (
     <View className="relative flex-1">
@@ -49,7 +53,7 @@ const HomeScreen = () => {
             }}>
             {showSearch && (
               <TextInput
-                onChangeText={handleSearch}
+                onChangeText={handleTextDebounce}
                 placeholder="Search City"
                 placeholderTextColor="lightgray"
                 className="h-10 flex-1 pl-6 text-base text-white"
@@ -221,7 +225,7 @@ const HomeScreen = () => {
                 style={{ height: 32, width: 30 }}
               />
               <Text className="text-white ">Monday</Text>
-              <Text className="text-xl font-semibold text-white">23&#176</Text>
+              <Text className="text-xl font-semibold text-white">23&#176;</Text>
             </View>
           </ScrollView>
         </View>
