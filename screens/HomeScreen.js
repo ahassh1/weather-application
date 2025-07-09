@@ -14,7 +14,7 @@ import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import { CalendarDaysIcon, MapPinIcon } from 'react-native-heroicons/solid';
 
 import { debounce } from 'lodash';
-import { fetchLocations } from 'api/weather';
+import { fetchLocations, fetchWeatherForecast } from 'api/weather';
 
 const HomeScreen = () => {
   const [showSearch, toggleSearch] = useState(false);
@@ -22,6 +22,13 @@ const HomeScreen = () => {
 
   const handlelocation = (loc) => {
     console.log('location:', loc);
+    setLocations([]);
+    fetchWeatherForecast({
+      cityName: loc.name,
+      days: '7',
+    }).then((data) => {
+      console.log('got forecast: ', data);
+    });
   };
 
   const handleSearch = (value) => {
@@ -87,7 +94,9 @@ const HomeScreen = () => {
                     key={index}
                     className={`mb-1 flex-row items-center p-3 px-4 ${borderClass}`}>
                     <MapPinIcon size={20} color="gray" />
-                    <Text className="ml-2 text-lg text-gray-700">London, United Kingdom</Text>
+                    <Text className="ml-2 text-lg text-gray-700">
+                      {loc?.name}, {loc?.country}
+                    </Text>
                   </TouchableOpacity>
                 );
               })}
