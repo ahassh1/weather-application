@@ -24,7 +24,7 @@ const HomeScreen = () => {
     <View className="relative flex-1">
       <StatusBar barStyle="light-content" />
       <Image
-        blurRadius={7}
+        blurRadius={2}
         source={require('../assets/images/bgdone.png')}
         //full screen image
         style={{
@@ -84,18 +84,23 @@ const HomeScreen = () => {
             London,
             <Text className="text-lg font-semibold text-gray-200">United Kingdom</Text>
           </Text>
-        </View>
-        {/* weather image  */}
-        <View className="flex-row justify-center">
-          <Image
-            source={require('../assets/images/partlycloudy.png')}
-            style={{
-              width: 120,
-              height: 120,
-              marginTop: 20,
-            }}
-            resizeMode="contain"
-          />
+          {/* weather image  */}
+          <View className="flex-row justify-center">
+            <Image
+              source={require('../assets/images/partlycloudy.png')}
+              style={{
+                width: 110,
+                height: 120,
+                // marginTop: 20,
+              }}
+              resizeMode="contain"
+            />
+          </View>
+          {/* degree celclus  */}
+          <View className="space-y-2">
+            <Text className="ml-5 text-center text-6xl font-bold text-white">23&#176;</Text>
+            <Text className="text-center text-xl tracking-widest text-white">Partly cloudy</Text>
+          </View>
         </View>
       </SafeAreaView>
     </View>
