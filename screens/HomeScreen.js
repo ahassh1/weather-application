@@ -101,6 +101,39 @@ const HomeScreen = () => {
             <Text className="ml-5 text-center text-6xl font-bold text-white">23&#176;</Text>
             <Text className="text-center text-xl tracking-widest text-white">Partly cloudy</Text>
           </View>
+          {/* other stats  */}
+          <View className="mx-4 flex-row justify-between">
+            <View className="flex-row items-center space-x-2">
+              <Image
+                source={require('../assets/images/drop.png')}
+                style={{
+                  width: 20,
+                  height: 22,
+                }}
+              />
+              <Text className="text-base font-semibold text-white">23%</Text>
+            </View>
+            <View className="flex-row items-center space-x-2">
+              <Image
+                source={require('../assets/images/sun.png')}
+                style={{
+                  width: 20,
+                  height: 22,
+                }}
+              />
+              <Text className="text-base font-semibold text-white">6:05 AM</Text>
+            </View>
+            <View className="flex-row items-center space-x-2">
+              <Image
+                source={require('../assets/images/winds.png')}
+                style={{
+                  width: 20,
+                  height: 22,
+                }}
+              />
+              <Text className="text-base font-semibold text-white">22 km</Text>
+            </View>
+          </View>
         </View>
       </SafeAreaView>
     </View>
