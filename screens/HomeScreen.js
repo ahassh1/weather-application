@@ -81,7 +81,7 @@ const HomeScreen = () => {
       <StatusBar barStyle="light-content" />
       <Image
         blurRadius={2}
-        source={require('../assets/images/bgdone.png')}
+        source={require('../assets/images/bgonly.png')}
         //full screen image
         style={{
           position: 'absolute',
