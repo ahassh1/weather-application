@@ -1,11 +1,7 @@
-import HomeScreen from 'screens/HomeScreen';
+import AppNavigation from 'navigation/appNavigation';
 import './global.css';
 
 const App = () => {
-  return (
-    <>
-      <HomeScreen />
-    </>
-  );
+  return <AppNavigation />;
 };
 export default App;

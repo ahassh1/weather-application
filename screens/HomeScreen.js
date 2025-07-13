@@ -72,7 +72,7 @@ const HomeScreen = () => {
       setLoading(false);
     });
   };
-  const handleTextDebounce = useCallback(debounce(handleSearch, 1000), []);
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
 
   const { current, location } = weather;
 
@@ -80,15 +80,9 @@ const HomeScreen = () => {
     <View className="relative flex-1">
       <StatusBar barStyle="light-content" />
       <Image
-        blurRadius={2}
         source={require('../assets/images/bgonly.png')}
-        //full screen image
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          resizeMode: 'cover',
-        }}
+        className="absolute h-full w-full"
+        resizeMode="cover"
       />
       {loading ? (
         <View className="flex-1 flex-row items-center justify-center">
@@ -201,7 +195,7 @@ const HomeScreen = () => {
                 <Image
                   source={require('../assets/images/winds.png')}
                   style={{
-                    width: 23,
+                    width: 24,
                     height: 24,
                   }}
                 />

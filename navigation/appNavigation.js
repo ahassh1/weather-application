@@ -4,9 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from 'screens/HomeScreen';
 
-const Stack = createNativeStackNavigator;
+// You forgot to call createNativeStackNavigator() — it should be invoked to get the navigator
+const Stack = createNativeStackNavigator();
 
-const appNavigation = () => {
+const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -15,4 +16,5 @@ const appNavigation = () => {
     </NavigationContainer>
   );
 };
-export default appNavigation;
+
+export default AppNavigation;
